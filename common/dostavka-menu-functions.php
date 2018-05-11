@@ -27,7 +27,7 @@ function sep($a){
 
 function dostavka_render_options(){
     global $aist_dostavka_options_page_url;
-    $uploaddir = plugin_dir_path(__FILE__) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
+    $uploaddir = DOSTAVKA_DIST_FOLDER. 'uploads' . DIRECTORY_SEPARATOR;
     $separator = array_filter(['/','\\'], "sep")[0];
     $uploaddir = str_replace($separator, "", $uploaddir);
     if(isset($_FILES['tariff'])){
@@ -127,7 +127,7 @@ function dostavka_process_tariff($file){
         }
     }
     $json = "var tariff = " . json_encode($tariff, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
-    $js = plugin_dir_path(__FILE__) . DIRECTORY_SEPARATOR . "tariff.js";
+    $js = DOSTAVKA_DIST_FOLDER . "tariff.js";
     file_put_contents ( $js , $json );
   } else {
     echo SimpleXLSX::parse_error();

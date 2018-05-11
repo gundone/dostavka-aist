@@ -1,9 +1,9 @@
 <?php
-wp_enqueue_script("tariff", "/wp-content/plugins/aist-dostavka/tariff.js");
-wp_enqueue_script("autocomplete", "/wp-content/plugins/aist-dostavka/autocomplete/auto-complete.js");
-wp_enqueue_script("dostavka-calc", "/wp-content/plugins/aist-dostavka/dostavka-calc.js", array(), "1.44");
-wp_enqueue_style("autoCompleteStyles", "/wp-content/plugins/aist-dostavka/autocomplete/auto-complete.css");
-wp_enqueue_style("dostavka-styles", "/wp-content/plugins/aist-dostavka/dostavka.css");
+wp_enqueue_script("tariff", "/wp-content/plugins/aist-dostavka/dist/js/tariff.js");
+wp_enqueue_script("autocomplete", "/wp-content/plugins/aist-dostavka/dist/autocomplete/auto-complete.js");
+wp_enqueue_script("dostavka-calc", "/wp-content/plugins/aist-dostavka/dist/js/dostavka-calc.js", array(), "1.44");
+wp_enqueue_style ("autoCompleteStyles", "/wp-content/plugins/aist-dostavka/dist/autocomplete/auto-complete.css");
+wp_enqueue_style ("dostavka-styles", "/wp-content/plugins/aist-dostavka/dostavka.css");
 ?>
 <h1><b>Калькулятор доставки</b></h1>
 <form id="dostavka-form" class="calc" method="post" action="/<?php echo get_option("dostavka_url"); ?>">

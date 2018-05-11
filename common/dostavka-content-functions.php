@@ -1,4 +1,7 @@
 <?php
+
+
+
 function dostavka_init(){
   $page_url = get_option("dostavka_url");
 }
@@ -11,22 +14,22 @@ function dostavka_content($content){
   
   if(strpos($content, $scodeLite) !==FALSE){
     ob_start();
-      include( __DIR__ . DIRECTORY_SEPARATOR . "preview.php");
+      include( "preview.php");
     $form = ob_get_clean();
     $content = str_replace($scodeLite, $form, $content);
   }
   
   if(strpos($content, $scodeSrch) !==FALSE){
     ob_start();
-      include( __DIR__ . DIRECTORY_SEPARATOR . "search-form.php");
+      include( DOSTAVKA_TRACKING_FOLDER. "search-form.php");
     $form = ob_get_clean();
    
     
     
     if(isset($_POST["dostavka-srch"]) && strlen($_POST["dostavka-srch"]) > 0 ){
-      require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
+      require_once DOSTAVKA_TRACKING_FOLDER . 'vendor/autoload.php';
       ob_start();
-        include( __DIR__ . DIRECTORY_SEPARATOR . "search-engine.php");
+        include( DOSTAVKA_TRACKING_FOLDER . "search-engine.php");
       $srchData = ob_get_clean();
       $form .= $srchData;
     }
@@ -41,7 +44,7 @@ function dostavka_content($content){
     }
     else {
       ob_start();
-        include( __DIR__ . DIRECTORY_SEPARATOR . "form.php");
+        include(DOSTAVKA_DIST_FOLDER. "form.php");
       $form = ob_get_clean();
       $content = str_replace($scodeFull, $form, $content);
     }

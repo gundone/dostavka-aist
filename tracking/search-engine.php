@@ -1,21 +1,6 @@
 <?php
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
+require_once DOSTAVKA_TRACKING_FOLDER . 'vendor/autoload.php';
 
-// 1/Y9brSzdAsOaHYYCDGskEa-26Gk2BRJkRisrVGR-Uza8
-
-$keyfile = 'dostavka-aist-74bea31f127e.json';
-
-function getClient(){
-  $client = new Google_Client();
-  $client->setScopes(Google_Service_Sheets::SPREADSHEETS_READONLY);
-  putenv('GOOGLE_APPLICATION_CREDENTIALS=' 
-          . __DIR__ 
-          . DIRECTORY_SEPARATOR 
-          . $keyfile);
-  $client->useApplicationDefaultCredentials();
-  $credentialsPath = __DIR__ . DIRECTORY_SEPARATOR . 'credentials.json';
-  return $client;
-}
 
 $client = getClient();
 $service = new Google_Service_Sheets($client);
@@ -59,3 +44,14 @@ if (empty($values)) {
   }
 }
 
+function getClient(){
+  $client = new Google_Client();
+  $client->setScopes(Google_Service_Sheets::SPREADSHEETS_READONLY);
+  $keyfile = 'dostavka-aist-74bea31f127e.json';
+  putenv('GOOGLE_APPLICATION_CREDENTIALS=' 
+          . DOSTAVKA_TRACKING_FOLDER 
+          . $keyfile);
+  $client->useApplicationDefaultCredentials();
+ 
+  return $client;
+}
