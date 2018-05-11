@@ -3,13 +3,15 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 
 // 1/Y9brSzdAsOaHYYCDGskEa-26Gk2BRJkRisrVGR-Uza8
 
+$keyfile = 'dostavka-aist-74bea31f127e.json';
+
 function getClient(){
   $client = new Google_Client();
   $client->setScopes(Google_Service_Sheets::SPREADSHEETS_READONLY);
   putenv('GOOGLE_APPLICATION_CREDENTIALS=' 
           . __DIR__ 
           . DIRECTORY_SEPARATOR 
-          . 'dostavka-aist-74bea31f127e.json');
+          . $keyfile);
   $client->useApplicationDefaultCredentials();
   $credentialsPath = __DIR__ . DIRECTORY_SEPARATOR . 'credentials.json';
   return $client;
