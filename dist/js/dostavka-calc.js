@@ -90,14 +90,17 @@ jQuery( document ).ready(function() {
               var fixPrice = price.match(regexFloat);
               cost = Math.ceil(weight) * parseFloat(fixPrice[0]) + parseFloat(fixPrice[1]);
             }
-            else{
-              cost = variants[x].upto_1 
+            else if(!isNaN(price)){
+               cost = variants[x].upto_1 
                       + Math.max(0, Math.min(19, Math.ceil(weight-1)))    *(isNaN(variants[x].upto_20)  ? 0 : variants[x].upto_20)
                       + Math.max(0, Math.min(10, Math.ceil(weight-20)))   *(isNaN(variants[x].upto_30)  ? 0 : variants[x].upto_30)
                       + Math.max(0, Math.min(70, Math.ceil(weight-30)))   *(isNaN(variants[x].upto_100) ? 0 : variants[x].upto_100)
                       + Math.max(0, Math.min(200, Math.ceil(weight-100))) *(isNaN(variants[x].upto_300) ? 0 : variants[x].upto_300)
                       + Math.max(0, Math.min(200, Math.ceil(weight-300))) *(isNaN(variants[x].upto_500) ? 0 : variants[x].upto_500);
                    
+            }
+            else {
+              cost = price;
             }
             appendVariants(cost, variants, x);
           }
